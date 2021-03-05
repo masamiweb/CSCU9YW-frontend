@@ -49,8 +49,8 @@ class UpdateContactComponent extends Component {
             postcode: this.state.postcode
         };
         console.log('contact => ' + JSON.stringify(contact));
-        console.log('id => ' + JSON.stringify(this.state.id));
-        ContactService.updateContact(contact, this.state.id).then( () => {
+        console.log('id => ' + JSON.stringify(this.state.telephone));
+        ContactService.updateContact(contact, this.state.telephone).then( () => {
             this.props.history.push('/contact');
         });
     };
@@ -130,7 +130,7 @@ class UpdateContactComponent extends Component {
                                                value={this.state.postcode} onChange={this.changePostCodeHandler}/>
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveOrUpdateContact}>Save</button>
+                                    <button className="btn btn-success" onClick={this.updateContact}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                 </form>
                             </div>

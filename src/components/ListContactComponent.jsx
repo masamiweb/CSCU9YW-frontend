@@ -70,8 +70,8 @@ class ListContactComponent extends Component {
                                         <td> {contact.postcode}</td>
                                         <td>
                                             <button onClick={ () => this.editContact(contact.id)} className="btn btn-info">Update </button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteContact(contact.id)} className="btn btn-danger">Delete </button>
-                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewContact(contact.id)} className="btn btn-info">View </button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.deleteContact(contact.telephone)} className="btn btn-danger">Delete </button>
+                                            <button style={{marginLeft: "10px"}} onClick={ () => this.viewContact(contact.telephone)} className="btn btn-info">View </button>
                                         </td>
                                     </tr>
                             )
