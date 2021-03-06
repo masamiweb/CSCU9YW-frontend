@@ -16,26 +16,32 @@ class ListContactComponent extends Component {
 
     deleteContact(id){
         ContactService.deleteContact(id).then( () => {
-            this.setState({contacts: this.state.contacts.filter(contact => contact.id !== id)});
+            this.setState({contacts: this.state.contacts.filter(contact => contact.telephone !== id)});
         });
     }
+
     viewContact(id){
         this.props.history.push(`/view-contact/${id}`);
     }
     editContact(id){
-        this.props.history.push(`/add-contact/${id}`);
-    }
-
-    componentDidMount(){
-        ContactService.getContact().then((res) => {
-            this.setState({ contacts: res.data});
-        });
+        this.props.history.push(`/update-contact/${id}`);
     }
 
     addContact(){
         this.props.history.push('/add-contact/_add');
     }
 
+    // this is called right after a component is mounted - so we set the state here
+    // to trigger a re-rendering of the component
+    // so inside this set the response equal to our contacts array
+    componentDidMount(){
+
+        ContactService.getContact().then((res) => {
+            this.setState({ contacts: res.data});
+
+        });
+
+    }
     render() {
         return (
             <div>
@@ -55,21 +61,22 @@ class ListContactComponent extends Component {
                             <th> Street </th>
                             <th> Town </th>
                             <th> PostCode </th>
+                            <th> Options (PUT/DELETE/GET) </th>
                         </tr>
                         </thead>
                         <tbody>
                         {
                             this.state.contacts.map(
                                 contact =>
-                                    <tr key = {contact.id}>
-                                        <td> { contact.telephone} </td>
-                                        <td> {contact.fname}</td>
-                                        <td> {contact.lname}</td>
-                                        <td> {contact.street}</td>
-                                        <td> {contact.town}</td>
-                                        <td> {contact.postcode}</td>
+                                    <tr key={contact.telephone}>
+                                        <td>{contact.telephone}</td>
+                                        <td>{contact.fname}</td>
+                                        <td>{contact.lname}</td>
+                                        <td>{contact.street}</td>
+                                        <td>{contact.town}</td>
+                                        <td>{contact.postcode}</td>
                                         <td>
-                                            <button onClick={ () => this.editContact(contact.id)} className="btn btn-info">Update </button>
+                                            <button onClick={ () => this.editContact(contact.telephone)} className="btn btn-info">Update</button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.deleteContact(contact.telephone)} className="btn btn-danger">Delete </button>
                                             <button style={{marginLeft: "10px"}} onClick={ () => this.viewContact(contact.telephone)} className="btn btn-info">View </button>
                                         </td>

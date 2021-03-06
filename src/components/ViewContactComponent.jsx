@@ -8,8 +8,10 @@ class ViewContactComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
+
             contact: {}
         }
+
     }
 
     componentDidMount(){
