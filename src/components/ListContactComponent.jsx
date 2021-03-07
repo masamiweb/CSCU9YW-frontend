@@ -36,10 +36,6 @@ class ListContactComponent extends Component {
         this.props.history.push('/add-contact/_add');
     }
 
-    viewContactByTown(town){
-        this.props.history.push(`"/view-contact-town/${town}`);
-    }
-
 
 
 

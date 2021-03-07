@@ -2,13 +2,15 @@
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService';
 
-
+/**
+ * component and methods for creating a new contact
+ */
 class CreateContactComponent extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            // step 2
+
             id: this.props.match.params.id,
             telephone: '',
             fname: '',
@@ -29,10 +31,9 @@ class CreateContactComponent extends Component {
 
     }
 
-    // step 3
+
     componentDidMount(){
 
-        // step 4
         if(this.state.id === '_add'){
 
 
@@ -64,7 +65,7 @@ class CreateContactComponent extends Component {
 
         console.log('contact => ' + JSON.stringify(contact));
 
-        // step 5
+
         if(this.state.telephone === undefined
             || this.state.fname === undefined
             || this.state.lname === undefined
