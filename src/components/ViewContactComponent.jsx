@@ -24,37 +24,35 @@ class ViewContactComponent extends Component {
         return (
             <div>
                 <br /><br />
-                <div className = "card col-md-6 offset-md-3">
-                    <h3 className = "text-center"> View Contact Details</h3>
-                    <div className = "card-body">
-                        <div className = "row">
-                            <label> Telephone: </label>
-                            <div > { this.state.contact.telephone }</div>
-                        </div>
-                        <div className = "row">
-                            <label> First Name: </label>
-                            <div > { this.state.contact.fname }</div>
-                        </div>
-                        <div className = "row">
-                            <label> Last Name: </label>
-                            <div> { this.state.contact.lname }</div>
-                        </div>
-                        <div className = "row">
-                            <label> Street: </label>
-                            <div> { this.state.contact.street }</div>
-                        </div>
-                        <div className = "row">
-                            <label> Town: </label>
-                            <div> { this.state.contact.town }</div>
-                        </div>
-                        <div className = "row">
-                            <label> PostCode: </label>
-                            <div> { this.state.contact.postcode }</div>
-                        </div>
+                <div className = "container">
+                <div className = "row">
+                    <h3 className="text-center">View Contact</h3>
+                    <table className = "table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th> Telephone </th>
+                            <th> First Name </th>
+                            <th> Last Name </th>
+                            <th> Street </th>
+                            <th> Town </th>
+                            <th> PostCode </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td> { this.state.contact.telephone }</td>
+                            <td> { this.state.contact.fname }</td>
+                            <td> { this.state.contact.lname }</td>
+                            <td> { this.state.contact.street }</td>
+                            <td> { this.state.contact.town }</td>
+                            <td> { this.state.contact.postcode }</td>
+                        </tr>
 
-                    </div>
+                        </tbody>
+                    </table>
 
                 </div>
+            </div>
             </div>
         )
     }

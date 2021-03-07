@@ -4,9 +4,14 @@ const CONTACT_API_BASE_URL = "http://localhost:8080/api/v1/contact";
 
 class ContactService {
 
-    getContact(town){
+    getContact(){
         return axios.get(CONTACT_API_BASE_URL);
     }
+
+    getContactByTown(town_id){
+        return axios.get(CONTACT_API_BASE_URL + '?' + 'town' + '=' + town_id);
+    }
+
 
     createContact(contact){
         return axios.post(CONTACT_API_BASE_URL, contact);

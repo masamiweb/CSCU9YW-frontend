@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService'
-import xtype from 'xtypejs'
+
 
 
 class ListContactComponent extends Component {
@@ -8,11 +8,14 @@ class ListContactComponent extends Component {
         super(props);
 
         this.state = {
-            contacts: []
+            contacts: [],
+            towns: []
         };
         this.addContact = this.addContact.bind(this);
         this.editContact = this.editContact.bind(this);
         this.deleteContact= this.deleteContact.bind(this);
+
+
     }
 
     deleteContact(id){
@@ -32,6 +35,10 @@ class ListContactComponent extends Component {
         this.props.history.push('/add-contact/_add');
     }
 
+    viewContactByTown(town){
+        this.props.history.push(`"/view-contact-town/${town}`);
+    }
+
 
 
 
@@ -42,6 +49,14 @@ class ListContactComponent extends Component {
 
         ContactService.getContact().then((res) => {
             this.setState({ contacts: res.data});
+            // push all the towns in an array
+            // use this as a drop down for filtering results
+            res.data.forEach(item => {
+                this.state.towns.push({
+                    town: item.town
+                });
+            });
+
 
         });
 
@@ -53,12 +68,11 @@ class ListContactComponent extends Component {
             <div>
                 <h2 className="text-center">Contact List</h2>
                 <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addContact}> Add Contact</button>
+                    <button className="btn btn-primary mx-2" onClick={this.addContact}> Add Contact </button>
                 </div>
                 <br /><br />
                 <div className = "row">
                     <table className = "table table-striped table-bordered">
-
                         <thead>
                         <tr>
                             <th> Telephone </th>
