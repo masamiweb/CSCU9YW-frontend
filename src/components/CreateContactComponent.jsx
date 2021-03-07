@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import ContactService from '../services/ContactService';
 
 /**
- * component and methods for creating a new contact
+ * create contact component and required methods
  */
 class CreateContactComponent extends Component {
     constructor(props) {
