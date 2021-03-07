@@ -1,3 +1,4 @@
+// STUDENT: 1910509
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService';
 
@@ -14,7 +15,8 @@ class CreateContactComponent extends Component {
             lname: '',
             street: '',
             town: '',
-            postcode: ''
+            postcode: '',
+            ret_promise: ''
         };
         this.changeTelephoneHandler = this.changeTelephoneHandler.bind(this);
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
@@ -79,9 +81,12 @@ class CreateContactComponent extends Component {
             return
         }
         if(this.state.id === '_add'){
-            ContactService.createContact(contact).then(() => {
+
+           ContactService.createContact(contact).then(() => {
                 this.props.history.push('/contact');
-            });
+
+           });
+
         }else{
             ContactService.updateContact(contact, this.state.telephone).then(() => {
                 this.props.history.push('/contact');
