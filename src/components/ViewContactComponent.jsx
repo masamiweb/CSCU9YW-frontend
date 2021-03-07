@@ -29,11 +29,11 @@ class ViewContactComponent extends Component {
                     <div className = "card-body">
                         <div className = "row">
                             <label> Telephone: </label>
-                            <div> { this.state.contact.telephone }</div>
+                            <div > { this.state.contact.telephone }</div>
                         </div>
                         <div className = "row">
                             <label> First Name: </label>
-                            <div> { this.state.contact.fname }</div>
+                            <div > { this.state.contact.fname }</div>
                         </div>
                         <div className = "row">
                             <label> Last Name: </label>

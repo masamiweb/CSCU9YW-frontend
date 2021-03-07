@@ -4,7 +4,7 @@ const CONTACT_API_BASE_URL = "http://localhost:8080/api/v1/contact";
 
 class ContactService {
 
-    getContact(){
+    getContact(town){
         return axios.get(CONTACT_API_BASE_URL);
     }
 

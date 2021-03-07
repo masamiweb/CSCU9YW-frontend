@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService'
+import xtype from 'xtypejs'
 
 
 class ListContactComponent extends Component {
@@ -31,6 +32,9 @@ class ListContactComponent extends Component {
         this.props.history.push('/add-contact/_add');
     }
 
+
+
+
     // this is called right after a component is mounted - so we set the state here
     // to trigger a re-rendering of the component
     // so inside this set the response equal to our contacts array
@@ -42,6 +46,8 @@ class ListContactComponent extends Component {
         });
 
     }
+
+
     render() {
         return (
             <div>
