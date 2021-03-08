@@ -9,6 +9,7 @@ class ContactService {
         return axios.get(CONTACT_API_BASE_URL);
     }
 
+
     getContactByTown(town_id){
         return axios.get(CONTACT_API_BASE_URL + '?' + 'town' + '=' + town_id);
     }
@@ -28,6 +29,10 @@ class ContactService {
 
     deleteContact(contactId){
         return axios.delete(CONTACT_API_BASE_URL + '/' + contactId);
+    }
+
+    deleteContactAll(contactId){
+        return axios.delete(CONTACT_API_BASE_URL);
     }
 }
 

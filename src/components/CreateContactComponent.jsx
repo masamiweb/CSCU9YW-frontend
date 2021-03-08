@@ -4,13 +4,19 @@ import ContactService from '../services/ContactService';
 
 /**
  * create contact component and required methods
+ * will display the form required to add a contact
  */
 class CreateContactComponent extends Component {
+
+    /**
+     *
+     * @param props variables passed in from parent component
+     */
     constructor(props) {
         super(props);
+        this.state = { hasError: false };
 
         this.state = {
-
             id: this.props.match.params.id,
             telephone: '',
             fname: '',
@@ -31,11 +37,16 @@ class CreateContactComponent extends Component {
 
     }
 
+    componentDidCatch(error, info) {
+        // Display fallback UI
+        this.setState({ hasError: true });
+        // You can also log the error to an error reporting service
+
+    }
 
     componentDidMount(){
 
         if(this.state.id === '_add'){
-
 
         }else{
             ContactService.getContactById(this.state.telephone).then( (res) =>{
@@ -63,8 +74,7 @@ class CreateContactComponent extends Component {
             postcode: this.state.postcode
         };
 
-        console.log('contact => ' + JSON.stringify(contact));
-
+        //console.log('contact => ' + JSON.stringify(contact));
 
         if(this.state.telephone === undefined
             || this.state.fname === undefined
@@ -82,11 +92,13 @@ class CreateContactComponent extends Component {
             return
         }
         if(this.state.id === '_add'){
+            // check for duplicate and if already exists show alert here and return
 
            ContactService.createContact(contact).then(() => {
                 this.props.history.push('/contact');
-
-           });
+           }, () => {
+                   alert("Telephone: "+contact.telephone+" already exists! Select unique number.");
+               });
 
         }else{
             ContactService.updateContact(contact, this.state.telephone).then(() => {
