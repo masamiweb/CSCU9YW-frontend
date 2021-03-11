@@ -1,6 +1,8 @@
 // STUDENT: 1910509
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 
 /**
@@ -50,6 +52,30 @@ class ListContactComponent extends Component {
     }
 
     /**
+     * Depending on the town selected in the drop down list - return contacts filtered by town
+     */
+    getContactByTown(town){
+
+        if(town === "ALL") {
+            ContactService.getContact().then((res) => {
+
+                this.setState({ contacts: res.data});
+
+            });
+
+        } else {
+            ContactService.getContactByTown(town).then((res) => {
+                    this.setState({ contacts: res.data});
+                },() => {
+                    alert("There are no contacts in the DB that match that town.");
+                }
+            );
+
+        }
+
+    }
+
+    /**
      *
      * @param id the telephone number of our contact
      * this will then route us to the correct page for viewing the ocntact
@@ -76,35 +102,19 @@ class ListContactComponent extends Component {
 
 
     /**
-     * this is called right after a component is mounted - so we set the state here to trigegr a re-rendering of
-     * components, in htis one we retrive all the contacts from our database as a list and show them on our page
+     * this is called right after a component is mounted - so we set the state here to trigger a re-rendering of
+     * components, in this one we retrieve all the contacts from our database as a list and show them on our page
      */
     componentDidMount(){
 
         ContactService.getContact().then((res) => {
+
             this.setState({ contacts: res.data});
 
         });
 
-        /**
-         * testing the get contacts by town name
-         * this is not implemented in the front end - due to time constrains
-         * something to learn and implement in future versions - need to creat a drop down component and add to the
-         * frontend - then add a onChange handler to get the value selected in the dropdown list and set it to the
-         * "town" variable
-         */
-        // ContactService.getContactByTown("stirling").then((res) => {
-        //     this.setState({ contacts: res.data});
-        //     // push all the towns in an array
-        //     // use this as a drop down for filtering results
-        //     res.data.forEach(item => {
-        //         this.state.towns.push({
-        //             town: item.town
-        //         });
-        //     });
-        //
-        //
-        // });
+
+
     }
 
     /**
@@ -118,6 +128,14 @@ class ListContactComponent extends Component {
                 <div className = "row">
                     <button className="btn btn-primary mx-2" onClick={this.addContact}> Add Contact </button>
                     <button className="btn btn-danger mx-2" onClick={() => this.deleteContactAll(this.state.contacts)}> Delete All </button>
+                    {/* the drop down is hardcoded in this front end - in future we would populate the list from
+                     the contacts array dynamically */}
+                    <DropdownButton id="town-dropdown" title="Towns">
+                        <Dropdown.Item onClick={() => this.getContactByTown("ALL")}>Show All</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.getContactByTown("stirling")}>Stirling</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.getContactByTown("glasgow")}>Glasgow</Dropdown.Item>
+                        <Dropdown.Item onClick={() => this.getContactByTown("edinburgh")}>Edinburgh</Dropdown.Item>
+                    </DropdownButton>
                 </div>
 
                 <br /><br />
