@@ -14,7 +14,7 @@ class CreateContactComponent extends Component {
      */
     constructor(props) {
         super(props);
-        this.state = { hasError: false };
+        // this.state = { hasError: false };
 
         this.state = {
             id: this.props.match.params.id,
@@ -37,12 +37,12 @@ class CreateContactComponent extends Component {
 
     }
 
-    componentDidCatch(error, info) {
-        // Display fallback UI
-        this.setState({ hasError: true });
-        // You can also log the error to an error reporting service
-
-    }
+    // componentDidCatch(error, info) {
+    //     // Display fallback UI
+    //     this.setState({ hasError: true });
+    //     // You can also log the error to an error reporting service
+    //
+    // }
 
     componentDidMount(){
 

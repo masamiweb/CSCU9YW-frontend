@@ -67,6 +67,11 @@ class ListContactComponent extends Component {
                     this.setState({ contacts: res.data});
                     if(this.state.contacts.length === 0){
                         alert("No contacts from, '" + town.toUpperCase() + "' found in database");
+                        // no contacts found - so show all current contats in the database
+                        ContactService.getContact().then((res) => {
+                            this.setState({ contacts: res.data});
+                        });
+
                     }
                 },() => {
                     alert("Unable to retrieve contacts!");
