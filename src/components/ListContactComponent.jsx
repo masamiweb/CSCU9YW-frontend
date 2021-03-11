@@ -66,13 +66,20 @@ class ListContactComponent extends Component {
         } else {
             ContactService.getContactByTown(town).then((res) => {
                     this.setState({ contacts: res.data});
+                    if(this.state.contacts.length === 0){
+                        alert("No contacts from, " + town.toUpperCase() + " found in database");
+                        ContactService.getContact().then((res) => {
+
+                            this.setState({ contacts: res.data});
+
+                        });
+                    }
                 },() => {
-                    alert("There are no contacts in the DB that match that town.");
+                    alert("Unable to retrieve contacts!");
                 }
             );
 
         }
-
     }
 
     /**
@@ -130,7 +137,7 @@ class ListContactComponent extends Component {
                     <button className="btn btn-danger mx-2" onClick={() => this.deleteContactAll(this.state.contacts)}> Delete All </button>
                     {/* the drop down is hardcoded in this front end - in future we would populate the list from
                      the contacts array dynamically */}
-                    <DropdownButton id="town-dropdown" title="Towns">
+                    <DropdownButton className="mx-2" id="town-dropdown" title="Filter by Town">
                         <Dropdown.Item onClick={() => this.getContactByTown("ALL")}>Show All</Dropdown.Item>
                         <Dropdown.Item onClick={() => this.getContactByTown("stirling")}>Stirling</Dropdown.Item>
                         <Dropdown.Item onClick={() => this.getContactByTown("glasgow")}>Glasgow</Dropdown.Item>
