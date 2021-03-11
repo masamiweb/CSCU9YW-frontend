@@ -14,7 +14,6 @@ class CreateContactComponent extends Component {
      */
     constructor(props) {
         super(props);
-        // this.state = { hasError: false };
 
         this.state = {
             id: this.props.match.params.id,
@@ -37,12 +36,7 @@ class CreateContactComponent extends Component {
 
     }
 
-    // componentDidCatch(error, info) {
-    //     // Display fallback UI
-    //     this.setState({ hasError: true });
-    //     // You can also log the error to an error reporting service
-    //
-    // }
+
 
     componentDidMount(){
 
@@ -93,7 +87,6 @@ class CreateContactComponent extends Component {
         }
         if(this.state.id === '_add'){
             // check for duplicate and if already exists show alert here and return
-
            ContactService.createContact(contact).then(() => {
                 this.props.history.push('/contact');
            }, () => {

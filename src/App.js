@@ -10,6 +10,12 @@ import ViewContactComponent from "./components/ViewContactComponent";
 import React from "react";
 
 
+/**
+ *  We define the routes for each component below, so that we can render the correct page depending on the
+ *  context we are currently in
+ * @returns {*}
+ * @constructor
+ */
 function App() {
     return (
         <div>
