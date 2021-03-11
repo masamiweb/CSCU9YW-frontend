@@ -14,7 +14,6 @@ class UpdateContactComponent extends Component {
             street: '',
             town: '',
             postcode: ''
-
         };
 
 
@@ -27,10 +26,7 @@ class UpdateContactComponent extends Component {
         this.updateContact = this.updateContact.bind(this);
     }
 
-
-
     updateContact = (e) => {
-
         e.preventDefault();
         let contact = {
             telephone: this.state.telephone,
@@ -56,7 +52,6 @@ class UpdateContactComponent extends Component {
             || this.state.postcode.trim() === '' ){
             alert("All fields are required!");
 
-
         } else {
             console.log('contact => ' + JSON.stringify(contact));
             console.log('telephone => ' + JSON.stringify(this.state.telephone));
@@ -64,9 +59,7 @@ class UpdateContactComponent extends Component {
             ContactService.updateContact(contact, this.state.telephone).then( () => {
                 this.props.history.push('/contact');
             });
-
         }
-
     };
 
     changeTelephoneHandler= (event) => {
@@ -93,7 +86,6 @@ class UpdateContactComponent extends Component {
         this.setState({postcode: event.target.value});
     };
 
-
     cancel(){
         this.props.history.push('/contact');
     }
@@ -110,10 +102,7 @@ class UpdateContactComponent extends Component {
                 town: contact.town,
                 postcode : contact.postcode
             });
-
         });
-
-
     }
 
     render() {

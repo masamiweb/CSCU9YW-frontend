@@ -2,17 +2,16 @@
 import React, { Component } from 'react'
 import ContactService from '../services/ContactService'
 
-
+/**
+ * view individual contacts component
+ */
 class ViewContactComponent extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             id: this.props.match.params.id,
-
             contact: {}
         }
-
     }
 
     componentDidMount(){

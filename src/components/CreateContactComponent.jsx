@@ -31,17 +31,15 @@ class CreateContactComponent extends Component {
         this.changeStreetHandler = this.changeStreetHandler.bind(this);
         this.changeTownHandler = this.changeTownHandler.bind(this);
         this.changePostCodeHandler = this.changePostCodeHandler.bind(this);
-
         this.saveOrUpdateContact = this.saveOrUpdateContact.bind(this);
 
     }
 
-
-
+    /**
+     * call this each time we render this component
+     */
     componentDidMount(){
-
         if(this.state.id === '_add'){
-
         }else{
             ContactService.getContactById(this.state.telephone).then( (res) =>{
                 let contact = res.data;
