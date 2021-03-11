@@ -5,6 +5,7 @@ const CONTACT_API_BASE_URL = "http://localhost:8080/api/v1/contact";
 
 /**
  * class with methods to call our RESTful API
+ * use the axios library, to execute web RESTful calls
  */
 class ContactService {
 
@@ -15,7 +16,7 @@ class ContactService {
 
 
     getContactByTown(town_id){
-        return axios.get(CONTACT_API_BASE_URL + '?' + 'town' + '=' + town_id);
+        return axios.get(CONTACT_API_BASE_URL + '?town=' + town_id);
     }
 
 

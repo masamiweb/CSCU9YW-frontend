@@ -53,26 +53,20 @@ class ListContactComponent extends Component {
 
     /**
      * Depending on the town selected in the drop down list - return contacts filtered by town
+     * If no town is found - show an alert informing the user
      */
     getContactByTown(town){
 
         if(town === "ALL") {
             ContactService.getContact().then((res) => {
-
                 this.setState({ contacts: res.data});
-
             });
 
         } else {
             ContactService.getContactByTown(town).then((res) => {
                     this.setState({ contacts: res.data});
                     if(this.state.contacts.length === 0){
-                        alert("No contacts from, " + town.toUpperCase() + " found in database");
-                        ContactService.getContact().then((res) => {
-
-                            this.setState({ contacts: res.data});
-
-                        });
+                        alert("No contacts from, '" + town.toUpperCase() + "' found in database");
                     }
                 },() => {
                     alert("Unable to retrieve contacts!");
@@ -101,27 +95,20 @@ class ListContactComponent extends Component {
     }
 
     /**
-     * we are routes to our add contact page which displays an empty form ready to fill in with contact info
+     * we are routed to our add contact page which displays an empty form ready to fill in with contact info
      */
     addContact(){
         this.props.history.push('/add-contact/_add');
     }
-
 
     /**
      * this is called right after a component is mounted - so we set the state here to trigger a re-rendering of
      * components, in this one we retrieve all the contacts from our database as a list and show them on our page
      */
     componentDidMount(){
-
         ContactService.getContact().then((res) => {
-
             this.setState({ contacts: res.data});
-
         });
-
-
-
     }
 
     /**
@@ -144,7 +131,6 @@ class ListContactComponent extends Component {
                         <Dropdown.Item onClick={() => this.getContactByTown("edinburgh")}>Edinburgh</Dropdown.Item>
                     </DropdownButton>
                 </div>
-
                 <br /><br />
                 <div className = "row">
                     <table className = "table table-striped table-bordered">
