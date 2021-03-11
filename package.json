@@ -9,10 +9,12 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
     "react-popup": "^0.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.1.0",
     "xtypejs": "^0.7.1"
   },
